@@ -1,11 +1,18 @@
-const list = document.querySelector("#list");
-const input = document.querySelector("#input");
-const submitBtn = document.querySelector("#submit");
+const $list = document.querySelector("#list");
+const $input = document.querySelector("#input");
+const $form = document.querySelector("form");
 
-submitBtn.addEventListener("click", () => {
-  let value = input.value;
+const createList = value => {
   let $li = document.createElement("li");
   $li.innerHTML = value;
-  input.value = "";
-  list.append($li);
-});
+  $list.append($li);
+};
+
+const submitHandle = e => {
+  e.preventDefault();
+  let value = $input.value;
+  $input.value = "";
+  createList(value);
+};
+
+$form.addEventListener("submit", submitHandle);
